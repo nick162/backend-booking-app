@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const connectDB = async() => {
     try {
         
-        const conn = await mongoose.connect('mongodb://localhost:27017/bookingDB', {
+        const conn = await mongoose.connect('mongodb+srv://hanik:wpu123@data.ii34z.mongodb.net/bookingDB?retryWrites=true&w=majority', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex:true,

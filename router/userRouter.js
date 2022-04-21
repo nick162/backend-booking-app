@@ -5,7 +5,7 @@ const auth = require('../middleware/auth')
 const checkRole = require('../middleware/checkRole')
 
 
-router.post('/create',  auth, checkRole("admin"), userController.addUser)
+router.post('/create', userController.addUser)
 router.get('/read', auth, userController.viewUser)
 router.put('/update/:id',  auth, checkRole("admin"), userController.updateUser)
 router.delete('/delete/:id', auth, checkRole("admin"), userController.deleteUser)
