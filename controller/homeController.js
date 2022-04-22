@@ -12,11 +12,11 @@ module.exports ={
                 .select(
                     "_id itemName location itemPrice unit imageId sumBooked isPopular"
                 )
+                .sort({sumBooked:-1})
                 .limit(5)
                 .populate({
                     path: "image",
                     select:" _id imageUrl",
-                    sort : {sumBooked : -1},
                 })
 
             const categoryList = await 
