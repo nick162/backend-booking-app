@@ -1,13 +1,14 @@
-const Feature = require('../models/Feature')
 const Item = require ('../models/Item')
+const Feature = require ('../models/Feature')
 const fs = require('fs-extra')
 const path = require('path')
 
 module.exports = {
 
     addFeature: async (req, res) => {
-        // console.log(req.body)
-        const {featureName, qty, item} = req.body
+        console.log(req.body)
+
+        const { featureName, qty, item} = req.body
 
         if(!req.file){
             return res.status(404).json({message:"Please Input Your file image"})
