@@ -7,28 +7,24 @@ module.exports = {
 
     addFeature: async (req, res) => {
         console.log(req.body)
-
-        const { featureName, qty, item} = req.body
+        const {featureName, qty, item} = req.body
 
         if(!req.file){
             return res.status(404).json({message:"Please Input Your file image"})
         }
 
         try {
-            const newFeature = await Feature({
+            const feature = await Feature.create({
                 featureName,
                 qty,
                 item,
                 imageUrl:`images/${req.file.filename}`,
             })
 
-            const feature = await Feature.create(newFeature)
             const itemDb = await Item.findOne({_id:item})
             itemDb.feature.push({ _id: feature._id})
 
             await itemDb.save()
-            await feature.save()
-            
             res.status(201).json(feature)
 
         } catch (error) {
