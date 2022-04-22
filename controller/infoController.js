@@ -16,7 +16,7 @@ module.exports = {
 
         try {
             
-            const info = await Info.create({
+            let info = await Info.create({
                 infoName,
                 type,
                 isHighlight,

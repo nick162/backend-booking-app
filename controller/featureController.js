@@ -14,7 +14,7 @@ module.exports = {
         }
 
         try {
-            const feature = await Feature.create({
+            let feature = await Feature.create({
                 featureName,
                 qty,
                 item,
