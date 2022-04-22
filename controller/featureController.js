@@ -21,7 +21,7 @@ module.exports = {
                 imageUrl:`images/${req.file.filename}`,
             })
 
-            const itemDb = await Item.findOne({_id:item})
+            const itemDb = await Item.findOne({_id:item.feature})
             itemDb.feature.push({_id:feature._id})
 
             itemDb.save()
