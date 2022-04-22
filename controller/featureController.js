@@ -15,17 +15,20 @@ module.exports = {
         }
 
         try {
-            const feature = await Feature.create({
+            const newFeature = await Feature({
                 featureName,
                 qty,
                 item,
                 imageUrl:`images/${req.file.filename}`,
             })
 
+            const feature = await Feature.create(newFeature)
             const itemDb = await Item.findOne({_id:item})
             itemDb.feature.push({ _id: feature._id})
 
             await itemDb.save()
+            await feature.save()
+            
             res.status(201).json(feature)
 
         } catch (error) {
