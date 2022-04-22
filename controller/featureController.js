@@ -10,7 +10,7 @@ module.exports = {
         const {featureName, qty, item} = req.body
 
         if(!req.file){
-            return res.status(404).json({message:"Wrong Key Paramter"})
+            return res.status(404).json({message:"Please Input Your file image"})
         }
 
         try {
