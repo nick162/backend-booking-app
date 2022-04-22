@@ -14,7 +14,8 @@ module.exports = {
         }
 
         try {
-            let feature = await Feature.create({
+
+            let feature = new Feature({
                 featureName,
                 qty,
                 item,
@@ -24,6 +25,7 @@ module.exports = {
             const itemDb = await Item.findOne({_id:item})
             itemDb.feature.push({ _id: feature._id})
 
+            await feature.save()
             await itemDb.save()
             res.status(201).json(feature)
 
