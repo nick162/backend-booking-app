@@ -5,7 +5,7 @@ const path = require('path')
 
 module.exports = {
 
-    addFeature: async (req, res, next) => {
+    addFeature: async (req, res) => {
         // console.log(req.body)
         const {featureName, qty, item} = req.body
 
@@ -22,10 +22,10 @@ module.exports = {
             })
 
             const itemDb = await Item.findOne({_id:item})
-            itemDb.feature.push({_id:feature._id})
+            itemDb.feature.push({ _id : feature._id})
 
             await itemDb.save()
-            res.status(200).json(feature)
+            res.status(201).json(feature)
 
         } catch (error) {
             await fs.unlink(path.join(`public/images/${req.file.filename}`))
