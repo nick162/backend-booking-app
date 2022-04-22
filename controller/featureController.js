@@ -9,9 +9,9 @@ module.exports = {
         // console.log(req.body)
         const {featureName, qty, item} = req.body
 
-        // if(!req.file){
-        //     return res.status(404).json({message:"Please Input Your file image"})
-        // }
+        if(!req.file){
+            return res.status(404).json({message:"Please Input Your file image"})
+        }
 
         try {
             const feature = await Feature.create({
@@ -22,7 +22,7 @@ module.exports = {
             })
 
             const itemDb = await Item.findOne({_id:item})
-            itemDb.feature.push({ _id : feature._id})
+            itemDb.feature.push({ _id: feature._id})
 
             await itemDb.save()
             res.status(201).json(feature)
