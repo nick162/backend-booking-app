@@ -23,11 +23,11 @@ module.exports = {
                 description,
                 item,
                 imageUrl:`images/${req.file.filename}`
-            })
+            });
 
             const itemDb = await Item.findOne({ _id : item});
             itemDb.info.push({_id:info._id});
-            await itemDb.save()
+            await itemDb.save();
 
             res.status(201).json(info)
 

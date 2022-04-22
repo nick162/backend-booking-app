@@ -7,7 +7,7 @@ module.exports = {
 
     addFeature: async (req, res) => {
         console.log(req.body)
-        const {featureName, qty, item} = req.body
+        const {featureName, qty, item} = req.body;
 
         if(!req.file){
             return res.status(404).json({message:"Please Input Your file image"})
@@ -15,20 +15,18 @@ module.exports = {
 
         try {
 
-            let feature = new Feature({
+            let feature = await Feature.create({
                 featureName,
                 qty,
                 item,
                 imageUrl:`images/${req.file.filename}`,
-            })
+            });
 
-            // const itemDb = await Item.findOne({_id:item})
-            // itemDb.feature.push({ _id: feature._id})
+            const itemDb = await Item.findOne({_id:item});
+            itemDb.feature.push({ _id: feature._id});
+            await itemDb.save();
 
-            await feature.save()
-            // await itemDb.save()
             res.status(201).json(feature)
-
         } catch (error) {
             await fs.unlink(path.join(`public/images/${req.file.filename}`))
             res.status(500).json({message:error.message})
