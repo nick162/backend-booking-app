@@ -21,10 +21,10 @@ module.exports = {
                 imageUrl:`images/${req.file.filename}`,
             })
 
-            const itemDb = await Item.findOne({_id:item.feature})
+            const itemDb = await Item.findOne({_id:item})
             itemDb.feature.push({_id:feature._id})
 
-            itemDb.save()
+            await itemDb.save()
             res.status(200).json(feature)
 
         } catch (error) {
