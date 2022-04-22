@@ -9,9 +9,9 @@ module.exports = {
         // console.log(req.body)
         const {featureName, qty, item} = req.body
 
-        if(!req.file){
-            return res.status(404).json({message:"Please Input Your file image"})
-        }
+        // if(!req.file){
+        //     return res.status(404).json({message:"Please Input Your file image"})
+        // }
 
         try {
             const feature = await Feature.create({
