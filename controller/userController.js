@@ -84,6 +84,7 @@ module.exports = {
 
   login: async (req, res) => {
     try {
+      console.log(req.body);
       const user = await User.findByCredentials(
         req.body.email,
         req.body.password

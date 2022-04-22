@@ -16,16 +16,18 @@ module.exports ={
                 .populate({
                     path: "image",
                     select:" _id imageUrl",
-                    option: {sort : {sumBooked : -1}},
+                    sort : {sumBooked : -1},
                 })
 
-            const categoryList = await Category.find({ $where: "this.item.length > 0" })
+            const categoryList = await 
+                // Category.find({ $where: "this.item.length > 0" })
+                Category.find({'item.3': {$exists: true}})
                 .limit(3)
                 .populate({
                     path: "item",
                     select : "_id itemName location itemPrice unit imageId isPopular ",
                     perDocumentLimit: 4,
-                    option: {sort : { sumBooked : -1 }},
+                    sort : { sumBooked : -1 },
                     populate : { 
                         path: "image",
                         perDocumentLimit: 1,
