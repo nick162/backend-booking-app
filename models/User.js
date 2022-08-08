@@ -92,7 +92,7 @@ const userSchema = new mongoose.Schema({
         }
         if(user.isModified('passwordConfirm')){
             user.passwordConfirm = await bcrypt.hash(user.passwordConfirm, 8)
-        }
+        }   
         next();
     })
 
